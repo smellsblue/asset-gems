@@ -1,4 +1,5 @@
 require "fileutils"
+require "yaml"
 
 class String
   def capitalize
@@ -233,7 +234,38 @@ end
   end
 
   def push!
-    system_exec "gem push #{name}-#{current_version}.gem"
+    if AssetGem::Pushed.include? name, current_version
+      puts "#{name}-#{current_version}.gem has already been pushed."
+    else
+      system_exec "cd '#{gem_path}' && gem push #{name}-#{current_version}.gem"
+      AssetGem::Pushed.push!(name, current_version)
+    end
+  end
+
+  class Pushed
+    class << self
+      def yaml_file
+        File.expand_path "../pushed.yml", __FILE__
+      end
+
+      def all
+        @all ||= YAML.load(File.read(yaml_file))
+      end
+
+      def include?(name, version)
+        all[name].include? version
+      end
+
+      def push!(name, version)
+        all[name] ||= []
+        all[name] << version
+        save!
+      end
+
+      def save!
+        File.write yaml_file, all.to_yaml
+      end
+    end
   end
 end
 
