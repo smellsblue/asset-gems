@@ -1,3 +1,6 @@
 [submodule "Gallery"]
 	path = Gallery
 	url = https://github.com/blueimp/Gallery.git
+[submodule "jQuery-File-Upload"]
+	path = jQuery-File-Upload
+	url = https://github.com/blueimp/jQuery-File-Upload.git
