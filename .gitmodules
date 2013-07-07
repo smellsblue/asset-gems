@@ -4,3 +4,9 @@
 [submodule "jQuery-File-Upload"]
 	path = jQuery-File-Upload
 	url = https://github.com/blueimp/jQuery-File-Upload.git
+[submodule "JavaScript-Load-Image"]
+	path = JavaScript-Load-Image
+	url = https://github.com/blueimp/JavaScript-Load-Image.git
+[submodule "JavaScript-Templates"]
+	path = JavaScript-Templates
+	url = https://github.com/blueimp/JavaScript-Templates.git

@@ -9,6 +9,7 @@ end
 
 class AssetGem
   def initialize(&block)
+    dependency "railties", ">= 3.0", "< 5.0"
     instance_eval &block
   end
 
@@ -74,6 +75,16 @@ class AssetGem
     else
       path = caller(0, 1).first.split(":", 2).first
       @repo_path = File.join File.expand_path("..", path), value
+    end
+  end
+
+  def dependency(gem = nil, *versions)
+    @dependencies ||= []
+
+    if gem.nil?
+      @dependencies
+    else
+      @dependencies << ([gem] + versions)
     end
   end
 
@@ -206,7 +217,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = #{homepage.inspect}
   gem.files         = FileList["lib/**/*", "vendor/**/*"]
   gem.require_paths = ["lib"]
-  gem.add_dependency "railties", ">= 3.0", "< 5.0"
+  #{dependency.map { |x| "gem.add_dependency #{x.map(&:inspect).join(", ")}" }.join("\n  ")}
 end
 }
   end
