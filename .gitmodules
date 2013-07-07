@@ -10,3 +10,6 @@
 [submodule "JavaScript-Templates"]
 	path = JavaScript-Templates
 	url = https://github.com/blueimp/JavaScript-Templates.git
+[submodule "JavaScript-Canvas-to-Blob"]
+	path = JavaScript-Canvas-to-Blob
+	url = https://github.com/blueimp/JavaScript-Canvas-to-Blob.git

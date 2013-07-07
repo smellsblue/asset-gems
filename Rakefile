@@ -17,6 +17,7 @@ end
 
 asset_gem do
   name "blueimp-javascript-load-image-rails"
+  modules "Blueimp::LoadImage::Rails"
   author "Sebastian Tschan"
   author_email "mail@blueimp.net"
   description "This gem wraps the blueimp JavaScript Load Image library as a Rails asset gem.  The library is by Sebastian Tschan, and the gem is packaged by Mike Virata-Stone."
@@ -33,6 +34,7 @@ end
 
 asset_gem do
   name "blueimp-javascript-templates-rails"
+  modules "Blueimp::Templates::Rails"
   author "Sebastian Tschan"
   author_email "mail@blueimp.net"
   description "This gem wraps the blueimp JavaScript Templates library as a Rails asset gem.  The library is by Sebastian Tschan, and the gem is packaged by Mike Virata-Stone."
@@ -44,7 +46,21 @@ asset_gem do
 end
 
 asset_gem do
+  name "blueimp-javascript-canvas-to-blob-rails"
+  modules "Blueimp::CanvasToBlob::Rails"
+  author "Sebastian Tschan"
+  author_email "mail@blueimp.net"
+  description "This gem wraps the blueimp JavaScript Canvas to Blob library as a Rails asset gem.  The library is by Sebastian Tschan, and the gem is packaged by Mike Virata-Stone."
+  summary "Rails asset gem for blueimp JavaScript Canvas to Blob."
+  license "MIT"
+  homepage "https://github.com/blueimp/JavaScript-Canvas-to-Blob"
+  repo_path "JavaScript-Canvas-to-Blob"
+  asset "js/canvas-to-blob.js" => "vendor/assets/javascripts"
+end
+
+asset_gem do
   name "blueimp-jquery-file-upload-rails"
+  modules "Blueimp::FileUpload::Rails"
   author "Sebastian Tschan"
   author_email "mail@blueimp.net"
   description "This gem wraps the blueimp jQuery File Upload plugin as a Rails asset gem.  The plugin is by Sebastian Tschan, and the gem is packaged by Mike Virata-Stone."
@@ -69,6 +85,7 @@ asset_gem do
   replace_css /url\(\.\.\/img\/\s*([^)]*)\s*\)/, 'url(<%= image_path("\1") %>)'
   dependency "blueimp-javascript-load-image-rails"
   dependency "blueimp-javascript-templates-rails"
+  dependency "blueimp-javascript-canvas-to-blob-rails"
   dependency "jquery-rails"
   dependency "jquery-ui-rails"
 end

@@ -127,9 +127,13 @@ class AssetGem
     end
   end
 
-  def modules
-    @modules ||= name.split("-").map do |m|
-      m.capitalize
+  def modules(value = nil)
+    if value.nil?
+      @modules ||= name.split("-").map do |m|
+        m.capitalize
+      end
+    else
+      @modules = value.split "::"
     end
   end
 
