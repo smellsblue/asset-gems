@@ -16,7 +16,7 @@ asset_gem do
 end
 
 asset_gem do
-  name "blueimp-javascript-load-image-rails"
+  name "blueimp-load-image-rails"
   modules "Blueimp::LoadImage::Rails"
   author "Sebastian Tschan"
   author_email "mail@blueimp.net"
@@ -33,7 +33,7 @@ asset_gem do
 end
 
 asset_gem do
-  name "blueimp-javascript-templates-rails"
+  name "blueimp-templates-rails"
   modules "Blueimp::Templates::Rails"
   author "Sebastian Tschan"
   author_email "mail@blueimp.net"
@@ -46,7 +46,7 @@ asset_gem do
 end
 
 asset_gem do
-  name "blueimp-javascript-canvas-to-blob-rails"
+  name "blueimp-canvas-to-blob-rails"
   modules "Blueimp::CanvasToBlob::Rails"
   author "Sebastian Tschan"
   author_email "mail@blueimp.net"
@@ -59,7 +59,7 @@ asset_gem do
 end
 
 asset_gem do
-  name "blueimp-jquery-file-upload-rails"
+  name "blueimp-file-upload-rails"
   modules "Blueimp::FileUpload::Rails"
   author "Sebastian Tschan"
   author_email "mail@blueimp.net"
@@ -83,9 +83,9 @@ asset_gem do
   asset "css/jquery.fileupload-ui.css" => "vendor/assets/stylesheets"
   asset_blob "img/*" => "vendor/assets/images"
   replace_css /url\(\.\.\/img\/\s*([^)]*)\s*\)/, 'url(<%= image_path("\1") %>)'
-  dependency "blueimp-javascript-load-image-rails"
-  dependency "blueimp-javascript-templates-rails"
-  dependency "blueimp-javascript-canvas-to-blob-rails"
+  dependency "blueimp-load-image-rails"
+  dependency "blueimp-templates-rails"
+  dependency "blueimp-canvas-to-blob-rails"
   dependency "jquery-rails"
   dependency "jquery-ui-rails"
 end
