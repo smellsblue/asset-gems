@@ -83,11 +83,11 @@ asset_gem do
   asset "css/jquery.fileupload-ui.css" => "vendor/assets/stylesheets"
   asset_blob "img/*" => "vendor/assets/images"
   replace_css /url\(\.\.\/img\/\s*([^)]*)\s*\)/, 'url(<%= image_path("\1") %>)'
-  dependency "blueimp-load-image-rails"
-  dependency "blueimp-templates-rails"
-  dependency "blueimp-canvas-to-blob-rails"
+  dependency "blueimp-load-image-rails", :asset_require => true
+  dependency "blueimp-templates-rails", :asset_require => true
+  dependency "blueimp-canvas-to-blob-rails", :asset_require => true
   dependency "jquery-rails"
-  dependency "jquery-ui-rails"
+  dependency "jquery-ui-rails", :asset_require => true
 end
 
 task :default => :build

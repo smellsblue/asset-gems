@@ -78,12 +78,25 @@ class AssetGem
     end
   end
 
+  def asset_require(value = nil)
+    @asset_require ||= []
+
+    if value.nil?
+      @asset_require
+    else
+      @asset_require << value
+    end
+  end
+
   def dependency(gem = nil, *versions)
     @dependencies ||= []
+    options = {}
 
     if gem.nil?
       @dependencies
     else
+      options = versions.pop if versions.last.kind_of? Hash
+      asset_require gem if options[:asset_require]
       @dependencies << ([gem] + versions)
     end
   end
@@ -185,7 +198,13 @@ class AssetGem
     path = File.join gem_path, "lib"
     FileUtils.mkpath path
     contents = "# This is a generated file.\n"
-    contents << "require #{"#{name}/version".inspect}\n\n"
+    contents << "require #{"#{name}/version".inspect}\n"
+
+    asset_require.each do |requirement|
+      contents << "require #{requirement.inspect}\n"
+    end
+
+    contents << "\n"
     indentation = 0
 
     modules.each do |m|
