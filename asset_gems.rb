@@ -10,6 +10,8 @@ end
 class AssetGem
   def initialize(&block)
     dependency "railties", ">= 3.0", "< 5.0"
+    files "lib/**/*"
+    files "vendor/**/*"
     instance_eval &block
   end
 
@@ -85,6 +87,16 @@ class AssetGem
       @asset_require
     else
       @asset_require << value
+    end
+  end
+
+  def files(value = nil)
+    @files ||= []
+
+    if value.nil?
+      @files
+    else
+      @files << value
     end
   end
 
@@ -238,7 +250,7 @@ Gem::Specification.new do |gem|
   gem.summary       = #{summary.inspect}
   gem.license       = #{license.inspect}
   gem.homepage      = #{homepage.inspect}
-  gem.files         = FileList["lib/**/*", "vendor/**/*"]
+  gem.files         = FileList[#{files.map(&:inspect).join ", "}]
   gem.require_paths = ["lib"]
   #{dependency.map { |x| "gem.add_dependency #{x.map(&:inspect).join(", ")}" }.join("\n  ")}
 end
@@ -247,15 +259,18 @@ end
 
   def update_css!
     Dir[File.join(gem_path, "vendor/assets/stylesheets/*.css")].each do |css|
-      path = "#{css}.erb"
-      FileUtils.move css, path
-      contents = File.read path
+      contents = File.read css
+      changed = false
 
       replace_css.each do |key, value|
-        contents.gsub! key, value
+        changed = !contents.gsub!(key, value).nil?
       end
 
-      File.write path, contents
+      if changed
+        path = "#{css}.erb"
+        FileUtils.move css, path
+        File.write path, contents
+      end
     end
   end
 
