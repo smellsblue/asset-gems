@@ -301,13 +301,16 @@ end
         @all ||= YAML.load(File.read(yaml_file))
       end
 
+      def for_gem(name)
+        all[name] ||= []
+      end
+
       def include?(name, version)
-        all[name].include? version
+        for_gem(name).include? version
       end
 
       def push!(name, version)
-        all[name] ||= []
-        all[name] << version
+        for_gem(name) << version
         save!
       end
 
