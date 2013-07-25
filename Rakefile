@@ -9,9 +9,9 @@ asset_gem do
   license "MIT"
   homepage "https://github.com/blueimp/Gallery"
   repo_path "Gallery"
-  asset "js/blueimp-gallery.js" => "vendor/assets/javascripts"
-  asset "css/blueimp-gallery.css" => "vendor/assets/stylesheets"
-  asset_blob "img/*" => "vendor/assets/images"
+  asset "js/blueimp-gallery.js" => "app/assets/javascripts"
+  asset "css/blueimp-gallery.css" => "app/assets/stylesheets"
+  asset_blob "img/*" => "app/assets/images"
   replace_css /url\(\.\.\/img\/\s*([^)]*)\s*\)/, 'url(<%= image_path("\1") %>)'
 end
 
@@ -25,11 +25,11 @@ asset_gem do
   license "MIT"
   homepage "https://github.com/blueimp/JavaScript-Load-Image"
   repo_path "JavaScript-Load-Image"
-  asset "js/load-image.js" => "vendor/assets/javascripts"
-  asset "js/load-image-ios.js" => "vendor/assets/javascripts"
-  asset "js/load-image-meta.js" => "vendor/assets/javascripts"
-  asset "js/load-image-exif.js" => "vendor/assets/javascripts"
-  asset "js/load-image-exif-map.js" => "vendor/assets/javascripts"
+  asset "js/load-image.js" => "app/assets/javascripts"
+  asset "js/load-image-ios.js" => "app/assets/javascripts"
+  asset "js/load-image-meta.js" => "app/assets/javascripts"
+  asset "js/load-image-exif.js" => "app/assets/javascripts"
+  asset "js/load-image-exif-map.js" => "app/assets/javascripts"
 end
 
 asset_gem do
@@ -42,7 +42,7 @@ asset_gem do
   license "MIT"
   homepage "https://github.com/blueimp/JavaScript-Templates"
   repo_path "JavaScript-Templates"
-  asset "js/tmpl.js" => "vendor/assets/javascripts"
+  asset "js/tmpl.js" => "app/assets/javascripts"
 end
 
 asset_gem do
@@ -55,7 +55,7 @@ asset_gem do
   license "MIT"
   homepage "https://github.com/blueimp/JavaScript-Canvas-to-Blob"
   repo_path "JavaScript-Canvas-to-Blob"
-  asset "js/canvas-to-blob.js" => "vendor/assets/javascripts"
+  asset "js/canvas-to-blob.js" => "app/assets/javascripts"
 end
 
 asset_gem do
@@ -68,20 +68,20 @@ asset_gem do
   license "MIT"
   homepage "https://github.com/blueimp/jQuery-File-Upload"
   repo_path "jQuery-File-Upload"
-  asset "js/cors/jquery.postmessage-transport.js" => "vendor/assets/javascripts/cors"
-  asset "js/cors/jquery.xdr-transport.js" => "vendor/assets/javascripts/cors"
-  asset "js/jquery.fileupload-angular.js" => "vendor/assets/javascripts"
-  asset "js/jquery.fileupload-audio.js" => "vendor/assets/javascripts"
-  asset "js/jquery.fileupload-image.js" => "vendor/assets/javascripts"
-  asset "js/jquery.fileupload-process.js" => "vendor/assets/javascripts"
-  asset "js/jquery.fileupload-ui.js" => "vendor/assets/javascripts"
-  asset "js/jquery.fileupload-validate.js" => "vendor/assets/javascripts"
-  asset "js/jquery.fileupload-video.js" => "vendor/assets/javascripts"
-  asset "js/jquery.fileupload.js" => "vendor/assets/javascripts"
-  asset "js/jquery.iframe-transport.js" => "vendor/assets/javascripts"
-  asset "css/jquery.fileupload-ui-noscript.css" => "vendor/assets/stylesheets"
-  asset "css/jquery.fileupload-ui.css" => "vendor/assets/stylesheets"
-  asset_blob "img/*" => "vendor/assets/images"
+  asset "js/cors/jquery.postmessage-transport.js" => "app/assets/javascripts/cors"
+  asset "js/cors/jquery.xdr-transport.js" => "app/assets/javascripts/cors"
+  asset "js/jquery.fileupload-angular.js" => "app/assets/javascripts"
+  asset "js/jquery.fileupload-audio.js" => "app/assets/javascripts"
+  asset "js/jquery.fileupload-image.js" => "app/assets/javascripts"
+  asset "js/jquery.fileupload-process.js" => "app/assets/javascripts"
+  asset "js/jquery.fileupload-ui.js" => "app/assets/javascripts"
+  asset "js/jquery.fileupload-validate.js" => "app/assets/javascripts"
+  asset "js/jquery.fileupload-video.js" => "app/assets/javascripts"
+  asset "js/jquery.fileupload.js" => "app/assets/javascripts"
+  asset "js/jquery.iframe-transport.js" => "app/assets/javascripts"
+  asset "css/jquery.fileupload-ui-noscript.css" => "app/assets/stylesheets"
+  asset "css/jquery.fileupload-ui.css" => "app/assets/stylesheets"
+  asset_blob "img/*" => "app/assets/images"
   replace_css /url\(\.\.\/img\/\s*([^)]*)\s*\)/, 'url(<%= image_path("\1") %>)'
   files "app/**/*"
   dependency "blueimp-load-image-rails", :asset_require => true

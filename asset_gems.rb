@@ -11,7 +11,7 @@ class AssetGem
   def initialize(&block)
     dependency "railties", ">= 3.0", "< 5.0"
     files "lib/**/*"
-    files "vendor/**/*"
+    files "app/**/*"
     instance_eval &block
   end
 
@@ -258,7 +258,7 @@ end
   end
 
   def update_css!
-    Dir[File.join(gem_path, "vendor/assets/stylesheets/*.css")].each do |css|
+    Dir[File.join(gem_path, "app/assets/stylesheets/*.css")].each do |css|
       contents = File.read css
       changed = false
 
