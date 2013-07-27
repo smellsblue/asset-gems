@@ -10,7 +10,14 @@ asset_gem do
   homepage "https://github.com/blueimp/Gallery"
   repo_path "Gallery"
   asset "js/blueimp-gallery.js" => "app/assets/javascripts"
+  asset "js/blueimp-gallery-fullscreen.js" => "app/assets/javascripts"
+  asset "js/blueimp-gallery-indicator.js" => "app/assets/javascripts"
+  asset "js/blueimp-gallery-video.js" => "app/assets/javascripts"
+  asset "js/blueimp-helper.js" => "app/assets/javascripts"
+  asset "js/jquery.blueimp-gallery.js" => "app/assets/javascripts"
   asset "css/blueimp-gallery.css" => "app/assets/stylesheets"
+  asset "css/blueimp-gallery-indicator.css" => "app/assets/stylesheets"
+  asset "css/blueimp-gallery-video.css" => "app/assets/stylesheets"
   asset_blob "img/*" => "app/assets/images"
   replace_css /url\(\.\.\/img\/\s*([^)]*)\s*\)/, 'url(<%= image_path("\1") %>)'
 end
@@ -27,6 +34,7 @@ asset_gem do
   repo_path "JavaScript-Load-Image"
   asset "js/load-image.js" => "app/assets/javascripts"
   asset "js/load-image-ios.js" => "app/assets/javascripts"
+  asset "js/load-image-orientation.js" => "app/assets/javascripts"
   asset "js/load-image-meta.js" => "app/assets/javascripts"
   asset "js/load-image-exif.js" => "app/assets/javascripts"
   asset "js/load-image-exif-map.js" => "app/assets/javascripts"
