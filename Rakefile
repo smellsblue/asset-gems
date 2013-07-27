@@ -101,6 +101,10 @@ end
 
 task :default => :build
 
+task :clean do
+  asset_gems.each &:clean!
+end
+
 task :copy_assets do
   asset_gems.each &:copy_assets!
 end

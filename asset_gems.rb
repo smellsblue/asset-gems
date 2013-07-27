@@ -291,6 +291,10 @@ end
     end
   end
 
+  def clean!
+    system_exec "git clean -d -x -f '#{gem_path}'"
+  end
+
   class Pushed
     class << self
       def yaml_file
