@@ -11,7 +11,7 @@
 //= require jquery.fileupload-validate
 //= require jquery.fileupload-ui
 
-$(function () {
+$(document).on("ready page:load", function() {
     $(".fileupload").each(function() {
         var fileupload = this;
         var $fileupload = $(this);
