@@ -258,7 +258,7 @@ end
   end
 
   def update_css!
-    Dir[File.join(gem_path, "app/assets/stylesheets/*.css")].each do |css|
+    Dir[File.join(gem_path, "app/assets/stylesheets/*.css"), File.join(gem_path, "app/assets/stylesheets/*.scss")].each do |css|
       contents = File.read css
       changed = false
 
@@ -266,9 +266,15 @@ end
         changed = !contents.gsub!(key, value).nil?
       end
 
+      # Files that are already scss shouldn't need to be erbs.
       if changed
-        path = "#{css}.erb"
-        FileUtils.move css, path
+        if css =~ /\.css$/
+          path = "#{css}.erb"
+          FileUtils.move css, path
+        else
+          path = css
+        end
+
         File.write path, contents
       end
     end
