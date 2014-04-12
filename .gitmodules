@@ -13,3 +13,6 @@
 [submodule "JavaScript-Canvas-to-Blob"]
 	path = JavaScript-Canvas-to-Blob
 	url = https://github.com/blueimp/JavaScript-Canvas-to-Blob.git
+[submodule "xregexp"]
+	path = xregexp
+	url = https://github.com/slevithan/xregexp.git

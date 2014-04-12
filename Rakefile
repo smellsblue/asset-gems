@@ -1,6 +1,24 @@
 require File.expand_path("../asset_gems", __FILE__)
 
 asset_gem do
+  name "xregexp-rails"
+  modules "XRegExp::Rails"
+  author "Steven Levithan"
+  author_email "steves_list@hotmail.com"
+  description "This gem wraps the xregexp JavaScript library as a Rails asset gem.  The library is by Steven Levithan, and the gem is packaged by Mike Virata-Stone."
+  summary "Rails asset gem for xregexp."
+  license "MIT"
+  homepage "http://xregexp.com/"
+  repo_path "xregexp"
+  asset "src/xregexp.js" => "app/assets/javascripts"
+  asset "src/xregexp-matchrecursive.js" => "app/assets/javascripts"
+  asset "src/xregexp-unicode-base.js" => "app/assets/javascripts"
+  asset "src/xregexp-unicode-blocks.js" => "app/assets/javascripts"
+  asset "src/xregexp-unicode-categories.js" => "app/assets/javascripts"
+  asset "src/xregexp-unicode-scripts.js" => "app/assets/javascripts"
+end
+
+asset_gem do
   name "blueimp-gallery-rails"
   author "Sebastian Tschan"
   author_email "mail@blueimp.net"
@@ -102,39 +120,39 @@ end
 task :default => :build
 
 task :clean do
-  asset_gems.each &:clean!
+  selected_asset_gems.each &:clean!
 end
 
 task :copy_assets do
-  asset_gems.each &:copy_assets!
+  selected_asset_gems.each &:copy_assets!
 end
 
 task :create_version do
-  asset_gems.each &:create_version!
+  selected_asset_gems.each &:create_version!
 end
 
 task :create_include_file do
-  asset_gems.each &:create_include_file!
+  selected_asset_gems.each &:create_include_file!
 end
 
 task :create_gemspec do
-  asset_gems.each &:create_gemspec!
+  selected_asset_gems.each &:create_gemspec!
 end
 
 task :update_css => :copy_assets do
-  asset_gems.each &:update_css!
+  selected_asset_gems.each &:update_css!
 end
 
 task :generate => [:copy_assets, :update_css, :create_version, :create_include_file, :create_gemspec]
 
 task :build => :generate do
-  asset_gems.each &:build!
+  selected_asset_gems.each &:build!
 end
 
 task :install => :build do
-  asset_gems.each &:install!
+  selected_asset_gems.each &:install!
 end
 
 task :push => :build do
-  asset_gems.each &:push!
+  selected_asset_gems.each &:push!
 end

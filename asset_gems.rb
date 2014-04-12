@@ -165,7 +165,12 @@ class AssetGem
   def current_version
     return @version if @version
     @version = system_exec("cd '#{repo_path}' && git describe --exact-match --tags HEAD").strip
-    return @version if @version =~ /^\d+\.\d+\.\d+$/
+
+    if @version =~ /^v?(\d+\.\d+\.\d+)$/
+      @version = Regexp.last_match[1]
+      return @version
+    end
+
     raise "Current version is unknown for #{name}"
   end
 
@@ -333,6 +338,16 @@ end
 
 def asset_gems
   @asset_gems ||= []
+end
+
+def selected_asset_gems
+  only = ENV["only"]
+
+  if only
+    asset_gems.select { |x| x.name == only }
+  else
+    asset_gems
+  end
 end
 
 def asset_gem(&block)
