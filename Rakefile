@@ -11,11 +11,14 @@ asset_gem do
   homepage "http://xregexp.com/"
   repo_path "xregexp"
   asset "src/xregexp.js" => "app/assets/javascripts"
-  asset "src/xregexp-matchrecursive.js" => "app/assets/javascripts"
-  asset "src/xregexp-unicode-base.js" => "app/assets/javascripts"
-  asset "src/xregexp-unicode-blocks.js" => "app/assets/javascripts"
-  asset "src/xregexp-unicode-categories.js" => "app/assets/javascripts"
-  asset "src/xregexp-unicode-scripts.js" => "app/assets/javascripts"
+  asset "src/addons/unicode/unicode-blocks.js" => "app/assets/javascripts/xregexp"
+  asset "src/addons/unicode/unicode-base.js" => "app/assets/javascripts/xregexp"
+  asset "src/addons/unicode/unicode-properties.js" => "app/assets/javascripts/xregexp"
+  asset "src/addons/unicode/unicode-scripts.js" => "app/assets/javascripts/xregexp"
+  asset "src/addons/unicode/unicode-categories.js" => "app/assets/javascripts/xregexp"
+  asset "src/addons/build.js" => "app/assets/javascripts/xregexp"
+  asset "src/addons/matchrecursive.js" => "app/assets/javascripts/xregexp"
+  asset "src/addons/prototypes.js" => "app/assets/javascripts/xregexp"
 end
 
 asset_gem do

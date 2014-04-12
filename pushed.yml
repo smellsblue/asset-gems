@@ -18,3 +18,4 @@ blueimp-file-upload-rails:
 - 8.6.1.1
 xregexp-rails:
 - 1.5.1
+- 2.0.0
