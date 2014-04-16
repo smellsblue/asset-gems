@@ -71,6 +71,15 @@ class AssetGem
     end
   end
 
+  def directory_path(value = nil)
+    if value.nil?
+      @directory_path || repo_path
+    else
+      path = caller(0, 1).first.split(":", 2).first
+      @directory_path = File.join File.expand_path("..", path), value
+    end
+  end
+
   def repo_path(value = nil)
     if value.nil?
       @repo_path
@@ -122,7 +131,25 @@ class AssetGem
   end
 
   def add_asset!(file, destination)
-    @assets[file] = File.join(gem_path, destination)
+    destination = File.join gem_path, destination
+    @assets[file] = destination
+
+    if destination =~ /(?:\.js|\.css|\.png|\.jpg|\.jpeg|\.gif)$/
+      dir = File.dirname destination
+      file_source = File.basename file
+      file_destination = File.basename destination
+      @assets[file] = dir
+      mv File.join(dir, file_source) => destination
+    end
+  end
+
+  def mv(hash = nil)
+    @moves ||= {}
+    return @moves if hash.nil?
+
+    hash.each do |key, value|
+      @moves[key] = value
+    end
   end
 
   def asset(hash = nil)
@@ -130,13 +157,13 @@ class AssetGem
     return @assets if hash.nil?
 
     hash.each do |key, value|
-      add_asset! File.join(repo_path, key), value
+      add_asset! File.join(directory_path, key), value
     end
   end
 
   def asset_blob(hash)
     hash.each do |key, value|
-      Dir[File.join(repo_path, key)].each do |file|
+      Dir[File.join(directory_path, key)].each do |file|
         add_asset! file, value
       end
     end
@@ -162,8 +189,13 @@ class AssetGem
     end
   end
 
+  def version(value)
+    @version = value
+  end
+
   def current_version
     return @version if @version
+    raise "Cannot determine the version when there is no repo!" if repo_path.nil?
     @version = system_exec("cd '#{repo_path}' && git describe --exact-match --tags HEAD").strip
 
     if @version =~ /^v?(\d+\.\d+\.\d+)$/
@@ -181,6 +213,12 @@ class AssetGem
       end
 
       FileUtils.cp source, destination
+    end
+  end
+
+  def move_assets!
+    mv.each do |source, destination|
+      FileUtils.mv source, destination
     end
   end
 
@@ -241,6 +279,8 @@ class AssetGem
   end
 
   def create_gemspec!
+    emails = [author_email, "mike@virata-stone.com"].compact.inspect
+
     gemspec_path = File.join gem_path, "#{name}.gemspec"
     File.write gemspec_path, %{# This is a generated file.
 require "rubygems/package_task"
@@ -250,7 +290,7 @@ Gem::Specification.new do |gem|
   gem.name          = #{name.inspect}
   gem.version       = #{modules.join "::"}::Version.to_s
   gem.authors       = [#{author.inspect}, "Mike Virata-Stone"]
-  gem.email         = [#{author_email.inspect}, "mike@virata-stone.com"]
+  gem.email         = #{emails}
   gem.description   = #{description.inspect}
   gem.summary       = #{summary.inspect}
   gem.license       = #{license.inspect}

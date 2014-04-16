@@ -19,3 +19,5 @@ blueimp-file-upload-rails:
 xregexp-rails:
 - 1.5.1
 - 2.0.0
+jquery-cookies-rails:
+- 2.1.0

@@ -1,6 +1,19 @@
 require File.expand_path("../asset_gems", __FILE__)
 
 asset_gem do
+  name "jquery-cookies-rails"
+  version "2.1.0"
+  modules "JQueryCookies::Rails"
+  author "James Auldridge"
+  description "This gem wraps the jquery.cookies JavaScript library as a Rails asset gem.  The library is by James Auldridge, and the gem is packaged by Mike Virata-Stone."
+  summary "Rails asset gem for jquery.cookies."
+  license "MIT"
+  homepage "https://code.google.com/p/cookies/"
+  directory_path "jquery.cookies"
+  asset "jquery.cookies.2.1.0.js" => "app/assets/javascripts/jquery.cookies.js"
+end
+
+asset_gem do
   name "xregexp-rails"
   modules "XRegExp::Rails"
   author "Steven Levithan"
@@ -146,7 +159,11 @@ task :update_css => :copy_assets do
   selected_asset_gems.each &:update_css!
 end
 
-task :generate => [:copy_assets, :update_css, :create_version, :create_include_file, :create_gemspec]
+task :move_assets => :update_css do
+  selected_asset_gems.each &:move_assets!
+end
+
+task :generate => [:copy_assets, :update_css, :move_assets, :create_version, :create_include_file, :create_gemspec]
 
 task :build => :generate do
   selected_asset_gems.each &:build!
