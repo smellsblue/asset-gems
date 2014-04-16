@@ -2,7 +2,7 @@ require File.expand_path("../asset_gems", __FILE__)
 
 asset_gem do
   name "jquery-cookies-rails"
-  version "2.1.0"
+  version "2.2.0"
   modules "JQueryCookies::Rails"
   author "James Auldridge"
   description "This gem wraps the jquery.cookies JavaScript library as a Rails asset gem.  The library is by James Auldridge, and the gem is packaged by Mike Virata-Stone."
@@ -10,7 +10,7 @@ asset_gem do
   license "MIT"
   homepage "https://code.google.com/p/cookies/"
   directory_path "jquery.cookies"
-  asset "jquery.cookies.2.1.0.js" => "app/assets/javascripts/jquery.cookies.js"
+  asset "jquery.cookies.2.2.0.js" => "app/assets/javascripts/jquery.cookies.js"
 end
 
 asset_gem do
