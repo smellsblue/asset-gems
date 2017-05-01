@@ -9,6 +9,7 @@ blueimp-load-image-rails:
 blueimp-templates-rails:
 - 2.2.1
 - 2.2.2
+- 3.8.0
 blueimp-canvas-to-blob-rails:
 - 2.0.6
 - 2.0.7

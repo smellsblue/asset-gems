@@ -9,7 +9,7 @@ end
 
 class AssetGem
   def initialize(&block)
-    dependency "railties", ">= 3.0", "< 5.0"
+    dependency "railties", ">= 3.0", "< 6.0"
     files "lib/**/*"
     files "app/**/*"
     instance_eval &block
